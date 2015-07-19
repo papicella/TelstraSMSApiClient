@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IBM Bluemix - Telstra SMS Api Clien</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .alert {
+            background: #fff6bf url(../../images/s_notice.png) center no-repeat;
+            background-position: 15px 50%;
+            text-align: left;
+            padding: 5px 20px 5px 45px;
+            border-top: 2px solid #ffd324;
+            border-bottom: 2px solid #ffd324;
+            border-left: 2px solid #ffd324;
+            border-right: 2px solid #ffd324;
+        }
+
+        .info {
+            background: #F8FAFC url(../../images/s_info.png) center no-repeat;
+            background-position: 15px 50%;
+            text-align: left;
+            padding: 5px 20px 5px 45px;
+            border-top: 2px solid #B5D4FE;
+            border-bottom: 2px solid #B5D4FE;
+            border-left: 2px solid #B5D4FE;
+            border-right: 2px solid #B5D4FE;
+        }
+
+        .error {
+            background: #FFBFBF url(../../images/s_error.png) center no-repeat;
+            background-position: 15px 50%;
+            text-align: left;
+            padding: 5px 20px 5px 45px;
+            border-top: 2px solid #FF2424;
+            border-bottom: 2px solid #FF2424;
+            border-left: 2px solid #FF2424;
+            border-right: 2px solid #FF2424;
+        }
+
+        .success {
+            background: #f0fff0 url(../../images/s_success.png) center no-repeat;
+            background-position: 15px 50%;
+            text-align: left;
+            padding: 5px 20px 5px 45px;
+            border-top: 2px solid #00FF00;
+            border-bottom: 2px solid #00FF00;
+            border-left: 2px solid #00FF00;
+            border-right: 2px solid #00FF00;
+        }
+    </style>
+</head>
+<body>
+<h2> IBM Bluemix - Telstra SMS Api Client </h2>
+
+<div class="success" th:if="${actionStr != null}" th:text="${actionStr}">
+</div>
+
+<form action="#" th:action="@{/sendsms}" th:object="${sms}" method="post">
+    <table>
+        <tr>
+            <td>Phone Number</td>
+            <td><input type="text" id="to" name="to" th:value="*{to}" size="30" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Send SMS" />
+</form>
+
+<hr size="2" />
+
+<div th:include="footer :: copy"></div>
+
+</body>
+</html>
