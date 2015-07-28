@@ -52,14 +52,33 @@
 <body>
 <h2> IBM Bluemix - Telstra SMS Api Client </h2>
 
+<input type="image" src="images/telstra.png" th:src="@{images/telstra.png}" />
+<p />
+
 <div class="success" th:if="${actionStr != null}" th:text="${actionStr}">
 </div>
 
+<h3> Send SMS to a mobile number </h3>
 <form action="#" th:action="@{/sendsms}" th:object="${sms}" method="post">
     <table>
         <tr>
             <td>Phone Number</td>
             <td><input type="text" id="to" name="to" th:value="*{to}" size="30" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Send SMS" />
+</form>
+
+<h3> Send SMS to a mobile number with MESSAGE </h3>
+<form action="#" th:action="@{/sendsmswithbody}" th:object="${smswithbody}" method="post">
+    <table>
+        <tr>
+            <td>Phone Number</td>
+            <td><input type="text" id="to" name="to" th:value="*{to}" size="30" /></td>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td><input type="text" id="body" name="body" th:value="*{body}" size="100" /></td>
         </tr>
     </table>
     <input type="submit" value="Send SMS" />
