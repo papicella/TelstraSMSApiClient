@@ -1,8 +1,5 @@
-package ibm.org.bluemix.telstra.client;
+package pas.org.pivotal.telstra.client;
 
-/**
- * Created by pas on 20/07/15.
- */
 public class Sms
 {
     private String to;

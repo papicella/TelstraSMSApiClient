@@ -1,4 +1,4 @@
-package ibm.org.bluemix.telstra.client;
+package pas.org.pivotal.telstra.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
-/**
- * Created by pas on 20/07/15.
- */
 @Controller
 public class WelcomeController
 {
@@ -48,7 +45,7 @@ public class WelcomeController
         model.addAttribute("sms", sms);
         model.addAttribute("smswithbody", new SmsWithBody());
 
-        String url = String.format("http://pas-telstrasmsapi.mybluemix.net/telstrasms?to=%s", to);
+        String url = String.format("http://apples-springboot-telstrasms.pcfdemo.net/telstra/sms?to=%s&appkey=7OdTnmeVbBAEFZLRnti2DrLtg2PPgf4E&appsecret=anaafk104rlzrZx7", to);
         String response = restTemplate.getForObject(url, String.class);
 
         logger.info("HTTP GET sent");
@@ -66,7 +63,6 @@ public class WelcomeController
 
         RestTemplate restTemplate = new RestTemplate();
 
-        model.addAttribute("vcapservices", System.getenv("VCAP_SERVICES"));
 
         SmsWithBody sms = new SmsWithBody();
         sms.setTo(to);
@@ -77,7 +73,7 @@ public class WelcomeController
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
-        String url = String.format("http://pas-telstrasmsapi.mybluemix.net/telstrasms?to=%s&body=%s", sms.getTo(), sms.getBody());
+        String url = String.format("http://apples-springboot-telstrasms.pcfdemo.net/telstra/sms?to=%s&body=%s&appkey=7OdTnmeVbBAEFZLRnti2DrLtg2PPgf4E&appsecret=anaafk104rlzrZx7", sms.getTo(), sms.getBody());
 
         String response = restTemplate.postForObject(url, headers, String.class);
 

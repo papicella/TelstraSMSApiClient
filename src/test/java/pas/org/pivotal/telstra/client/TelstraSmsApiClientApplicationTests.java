@@ -1,4 +1,4 @@
-package ibm.org.bluemix.telstra.client;
+package pas.org.pivotal.telstra.client;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

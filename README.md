@@ -1,25 +1,10 @@
 <h1> Telstra Client Side SMS API Consumer </h1>
 
-The following project can be used to consume the Telstra SMS Api from a spring boot application. It presents a simple form to send
+The following project can be used to consume the Telstra SMS Api from a spring boot application. It presents a simple Bootstrap form to send
 an SMS to a phone number.
 
-The manifest.yml file below is consuming the Telstra SMS service created in the catalog
+![alt tag](https://dl.dropboxusercontent.com/u/15829935/platform-demos/images/piv-telstra-sms1.png)
 
-manifest.yml
- 
-```
-applications:
-- name: pas-telstrasmsapi-client
-  memory: 512M
-  instances: 1
-  host: pas-telstrasmsapi-client
-  domain: mybluemix.net
-  path: ./target/TelstraSMSApiClient-0.0.1-SNAPSHOT.jar
-  env:
-   JBP_CONFIG_IBMJDK: "version: 1.8.+"
-  services:
-    - TelstraSMS-service
- ```
+![alt tag](https://dl.dropboxusercontent.com/u/15829935/platform-demos/images/piv-telstra-sms2.png)
 
-
-Pas Apicella [pasapi at au1.ibm.com] is a Bluemix Technical Specialist at IBM Australia
+Pas Apicella [papicella at pivotal.io] is a Senior Platform Architect at Pivotal

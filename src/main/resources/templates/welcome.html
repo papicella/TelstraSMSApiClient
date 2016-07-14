@@ -1,88 +1,114 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>IBM Bluemix - Telstra SMS Api Clien</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-        .alert {
-            background: #fff6bf url(../../images/s_notice.png) center no-repeat;
-            background-position: 15px 50%;
-            text-align: left;
-            padding: 5px 20px 5px 45px;
-            border-top: 2px solid #ffd324;
-            border-bottom: 2px solid #ffd324;
-            border-left: 2px solid #ffd324;
-            border-right: 2px solid #ffd324;
-        }
+    <title>Telstra SMS API - Send SMS</title>
 
-        .info {
-            background: #F8FAFC url(../../images/s_info.png) center no-repeat;
-            background-position: 15px 50%;
-            text-align: left;
-            padding: 5px 20px 5px 45px;
-            border-top: 2px solid #B5D4FE;
-            border-bottom: 2px solid #B5D4FE;
-            border-left: 2px solid #B5D4FE;
-            border-right: 2px solid #B5D4FE;
-        }
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        .error {
-            background: #FFBFBF url(../../images/s_error.png) center no-repeat;
-            background-position: 15px 50%;
-            text-align: left;
-            padding: 5px 20px 5px 45px;
-            border-top: 2px solid #FF2424;
-            border-bottom: 2px solid #FF2424;
-            border-left: 2px solid #FF2424;
-            border-right: 2px solid #FF2424;
-        }
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-        .success {
-            background: #f0fff0 url(../../images/s_success.png) center no-repeat;
-            background-position: 15px 50%;
-            text-align: left;
-            padding: 5px 20px 5px 45px;
-            border-top: 2px solid #00FF00;
-            border-bottom: 2px solid #00FF00;
-            border-left: 2px solid #00FF00;
-            border-right: 2px solid #00FF00;
-        }
-    </style>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Latest compiled and minified CSS -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2> IBM Bluemix - Telstra SMS Api Client </h2>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.telstra.com/">
+                <img src="images/telstra.png"
+                     th:src="@{images/telstra.png}"
+                     alt="Pivotal" height="32" width="32"
+                     border="0"/>
+            </a>
+            <a class="navbar-brand" href="http://run.pivotal.io/">
+                <img src="images/PoweredByPivotal1.png"
+                     th:src="@{images/PoweredByPivotal1.png}"
+                     alt="Pivotal"
+                     border="0"/>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right  ">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://dev.telstra.com/content/sms-api-0" class="btn">About Telstra SMS</a></li>
+            </ul>
+        </div>
 
-<input type="image" src="images/telstra.png" th:src="@{images/telstra.png}" />
-<p />
+    </div>
+</div>
+<!-- NAVBAR CODE END -->
 
-<div class="success" th:if="${actionStr != null}" th:text="${actionStr}">
+
+<div class="bs-example">
+    <div class="page-header">
+        <h1>PCF Telstra SMS API <small>Send SMS</small></h1>
+    </div>
+</div>
+
+<div class="bs-example" th:if="${actionStr}">
+    <div class="alert alert-info fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> <b th:text="${actionStr}"></b>
+    </div>
 </div>
 
 <h3> Send SMS to a mobile number </h3>
-<form action="#" th:action="@{/sendsms}" th:object="${sms}" method="post">
-    <table>
-        <tr>
-            <td>Phone Number</td>
-            <td><input type="text" id="to" name="to" th:value="*{to}" size="30" /></td>
-        </tr>
-    </table>
-    <input type="submit" value="Send SMS" />
-</form>
+<div class="bs-example">
+    <form th:action="@{/sendsms}" th:object="${sms}" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="to" class="control-label col-xs-2">Phone Number</label>
+            <div class="col-xs-6">
+                <input type="text" class="form-control" id="to" name="to" th:value="*{to}"
+                       placeholder="Mobile Number" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary">Send SMS</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <h3> Send SMS to a mobile number with MESSAGE </h3>
-<form action="#" th:action="@{/sendsmswithbody}" th:object="${smswithbody}" method="post">
-    <table>
-        <tr>
-            <td>Phone Number</td>
-            <td><input type="text" id="to" name="to" th:value="*{to}" size="30" /></td>
-        </tr>
-        <tr>
-            <td>Message</td>
-            <td><input type="text" id="body" name="body" th:value="*{body}" size="100" /></td>
-        </tr>
-    </table>
-    <input type="submit" value="Send SMS" />
-</form>
+<div class="bs-example">
+    <form th:action="@{/sendsmswithbody}" th:object="${smswithbody}" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="to" class="control-label col-xs-2">Phone Number</label>
+            <div class="col-xs-6">
+                <input type="text" class="form-control" id="to" name="to" th:value="*{to}"
+                       placeholder="Mobile Number" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="body" class="control-label col-xs-2">Message Text</label>
+            <div class="col-xs-6">
+                <input type="text" class="form-control" id="body" name="body" th:value="*{body}"
+                       placeholder="Message Text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary">Send SMS</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <hr size="2" />
 
